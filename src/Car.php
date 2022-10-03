@@ -15,7 +15,7 @@ class Car
     // Les propriétés suivantes sont créées via la promotion des propriétés dans le constructeur
     // private string $color;
 
-    // private int $numberSeats = 5;
+    // private int $numberSeats;
 
     // private string $energyType;
 
@@ -55,34 +55,16 @@ class Car
         return $this->numberWheels;
     }
 
+    public function setNumberWheels(int $numberWheels): void
+    {
+        if($numberWheels >= 2) {
+            $this->numberWheels = $numberWheels;
+        }
+    }
+
     public function getCurrentSpeed(): int
     {
         return $this->currentSpeed;
-    }
-
-    public function getColor(): string
-    {
-        return $this->color;
-    }
-
-    public function getNumberSeats(): int
-    {
-        return $this->getNumberSeats;
-    }
-
-    public function getEnergyType(): string
-    {
-        return $this->energyType;
-    }
-
-    public function getEnergyLevel(): string
-    {
-        return $this->energyLevel;
-    }
-
-    public function setColor(string $color): void
-    {
-        $this->color = $color;
     }
 
     public function setCurrentSpeed(int $currentSpeed): void
@@ -90,6 +72,43 @@ class Car
         if($currentSpeed >= 0) {
             $this->currentSpeed = $currentSpeed;
         }
+    }
+
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): void
+    {
+        $this->color = $color;
+    }
+
+    public function getNumberSeats(): int
+    {
+        return $this->getNumberSeats;
+    }
+
+    public function setNumberSeats(int $numberSeats): void
+    {
+        if($numberSeats >= 1) {
+           $this->numberSeats = $numberSeats;
+        }
+    }
+
+    public function getEnergyType(): string
+    {
+        return $this->energyType;
+    }
+
+    public function setEnergyType(string $energyType): void
+    {
+        $this->energyType = $energyType;
+    }
+
+    public function getEnergyLevel(): string
+    {
+        return $this->energyLevel;
     }
 
     public function setEnergyLevel(int $energyLevel): void
