@@ -1,81 +1,54 @@
 <?php
 // index.php
 
-/* On appelle Bicycle.php et Car.php pour pouvoir
-   utiliser les classes Bicycle et Car.*/
+// Calling Truck.php and Vehicle.php
 
-require_once './src/Bicycle.php';
-require_once './src/Car.php';
+require_once './src/Truck.php';
+require_once './src/Vehicle.php';
 
-// On crée un nouvel objet = on instancie une classe :
-$bike = new Bicycle();
+// We're creating a first truck, which is in filling, gray, has 3 seats and is electric.
+$truck1 = new Truck('in filling', 'gray', 3, 'electric');
 
-// On crée un autre vélo pour vérifier que l'on peut instancier plusieurs objets en même temps sans erreur.
+// We're creating a second truck, which is full, red, has 2 seats and is running on fuel.
 
-$Btwin = new Bicycle();
+$truck2 = new Truck('full', 'red', 2, 'fuel');
 
-/* On a modifié les attributs en private, il faut donc utiliser
-   les méthodes (public) que l'on a créé pour interagir avec :*/
+/* We're calling methods created in the classes Vehicle and Truck to check that the program
+   is working as it should be */
 
-$bike->setColor('blue');
-$Btwin->setColor('gray');
+echo $truck1->start();
+echo $truck2->start();
 
-$bike->setCurrentSpeed(0);
-$Btwin->setCurrentSpeed(30);
+echo $truck1->forward();
+echo '<br>Truck1 current speed : ' . $truck1->getCurrentSpeed() . 'km/h' . '<br>';
+echo $truck2->setCurrentSpeed(30);
+echo '<br>Truck2 current speed : ' . $truck2->getCurrentSpeed() . 'km/h' . '<br><br>';
 
-var_dump($bike);
-var_dump($Btwin);
+echo 'Truck1 started braking.<br>';
+echo $truck1->brake();
+echo 'Truck1 current speed : ' . $truck1->getCurrentSpeed() . 'km/h' . '<br>';
+echo $truck1->brake();
 
-// On instancie deux voitures, pour vérifier que l'on peut avoir deux objets actifs en même temps sans erreurs.
+echo '<br>Truck2 started braking.<br>';
+echo $truck2->brake();
+echo 'Truck2 current speed : ' . $truck2->getCurrentSpeed() . 'km/h' . '<br>';
+echo $truck2->brake();
 
-$Picasso = new Car('beige', 5, 'Diesel');
-var_dump($Picasso);
+// We're adding and checking the energy level of the trucks
 
-$Ford = new Car('noire', 5, 'Sans Plomb');
-var_dump($Ford);
+$truck1->setEnergyLevel(20);
+echo '<br>Truck1 current energy level : ' . $truck1->getEnergyLevel() . '%' . '<br>';
+$truck2->setEnergyLevel(50);
+echo '<br>Truck2 current energy level : ' . $truck2->getEnergyLevel() . 'L' . '<br>';
 
-/* On appelle ici les méthodes créées dans la classe
-   pour démarrer et faire bouger les voitures */
+// We're checking the load status of the trucks
 
-echo $Picasso->start();
-echo $Ford->start();
+echo '<br>Truck1 is ' . $truck1->getLoadStatus() . '.<br>';
 
-echo $Picasso->forward();
-echo '<br>Vitesse du Picasso : ' . $Picasso->getCurrentSpeed() . 'km/h' . '<br>';
-echo $Ford->setCurrentSpeed(30);
-echo '<br>Vitesse de la Ford : ' . $Ford->getCurrentSpeed() . 'km/h' . '<br>';
+echo '<br>Truck2 is ' . $truck2->getLoadStatus() . '.<br>';
 
-echo $Picasso->brake();
-echo '<br>Vitesse du Picasso : ' . $Picasso->getCurrentSpeed() . 'km/h' . '<br>';
-echo $Picasso->brake();
-echo $Ford->brake();
-echo '<br>Vitesse de la Ford : ' . $Ford->getCurrentSpeed() . 'km/h' . '<br>';
-echo $Ford->brake();
+echo "<br>Let's load truck1 !<br>";
+$truck1->setLoadStatus('full');
+echo '<br>Truck1 is ' . $truck1->getLoadStatus() . '.<br>';
 
-// On ajoute du carburant aux véhicules
-
-$Picasso->setEnergyLevel(20);
-echo '<br>Niveau de carburant du Picasso : ' . $Picasso->getEnergyLevel() . 'L' . '<br>';
-$Ford->setEnergyLevel(50);
-echo '<br>Niveau de carburant de la Ford : ' . $Ford->getEnergyLevel() . 'L' . '<br>';
-
-// Fin de l'exercice ====================================================================
-
-
-
-
-// Début de la quête avec des attributs publiques
-
-// On peut définir des attributs publics depuis l'extérieur de la classe :
-//  $bike->setcolor = 'blue';
-//  $bike->currentSpeed = 0;
-//  var_dump($bike);
-
-/* On appelle ici les méthodes créées dans la classe
-   pour faire bouger le vélo */
-
-//  echo $bike->forward();
-//  echo '<br>Vitesse du vélo : ' . $bike->currentSpeed . 'km/h' . '<br>';
-//  echo $bike->brake();
-//  echo '<br>Vitesse du vélo : ' . $bike->currentSpeed . 'km/h' . '<br>';
-//  echo $bike->brake();
+// End of exercise ====================================================================
